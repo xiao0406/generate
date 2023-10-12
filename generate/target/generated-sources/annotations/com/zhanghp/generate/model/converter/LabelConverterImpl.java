@@ -9,8 +9,8 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-01T10:16:06+0800",
-    comments = "version: 1.4.1.Final, compiler: javac, environment: Java 1.8.0_141 (Oracle Corporation)"
+    date = "2023-10-12T11:00:32+0800",
+    comments = "version: 1.4.1.Final, compiler: javac, environment: Java 1.8.0_221 (Oracle Corporation)"
 )
 public class LabelConverterImpl implements LabelConverter {
 

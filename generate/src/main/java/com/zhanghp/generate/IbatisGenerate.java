@@ -33,14 +33,28 @@ public class IbatisGenerate {
         generate();
     }
 
+
+
     /**
      * 代码生成
      */
     public static void generate() {
+        // 数据库连接
+        String url = "jdbc:mysql://43.136.111.148:3306/stec-maintain?";
+        //账号
+        String username = "root";
+        //密码
+        String password = "root";
+        // 输出目录(一般不需要更改)
+        String outputDir = "E:\\work\\workspace\\java\\java\\generate\\src\\main\\java";
+        //xml输出目录(一般不需要更改)
+        String xmlOutputDir = "E:\\work\\workspace\\java\\java\\generate\\src\\main\\java\\com\\mcsgis\\modules\\mapper\\xml";
+        //表名
+        String tableName = "car_use";
 
-        FastAutoGenerator.create("jdbc:mysql://101.201.221.165:3306/all?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC",
-                        "root",
-                        "123456")
+        FastAutoGenerator.create(url+"useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC",
+                        username,
+                        password)
 
                 // 全局配置
                 .globalConfig(builder -> {
@@ -49,7 +63,7 @@ public class IbatisGenerate {
                             .author("wangxiaoyang") // 作者名称
                             .dateType(DateType.ONLY_DATE) // 时间策略
                             .commentDate("yyyy-MM-dd") // 注释日期
-                            .outputDir("E:\\work\\workspace\\java\\java\\lab_02_mybatis_plus\\generate\\src\\main\\java") // 输出目录
+                            .outputDir(outputDir) // 输出目录
                             .fileOverride(); // 覆盖已生成文件
 //                            .disableOpenDir(); // 生成后禁止打开所生成的系统目录
                 })
@@ -65,7 +79,7 @@ public class IbatisGenerate {
                             .mapper("mapper") // mapper包名
                             .controller("controller") // controller包名
                             .other("model") // 自定义包名
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\work\\workspace\\java\\java\\lab_02_mybatis_plus\\generate\\src\\main\\java\\com\\mcsgis\\modules\\mapper\\xml")); // xml位置
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, xmlOutputDir)); // xml位置
                 })
 
                 // 策略配置
@@ -75,7 +89,7 @@ public class IbatisGenerate {
                             .addTableSuffix("_db") // 增加过滤表后缀
                             .addFieldPrefix("t_") // 增加过滤字段前缀
                             .addFieldSuffix("_field") // 增加过滤字段后缀
-                            .addInclude("spu_sale_attr") // 表匹配
+                            .addInclude(tableName) // 表匹配
 
                             // Entity 策略配置
                             .entityBuilder()
