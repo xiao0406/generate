@@ -1,0 +1,45 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import org.springframework.stereotype.Service;
+import java.util.*;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+## 主键类型判断
+#foreach($field in ${table.fields})
+    #if(${field.keyFlag})
+## 主键类型
+        #set($idType=${field.propertyType})
+## 主键名称
+        #set($idName=${field.propertyName})
+## 跳出
+        #break
+    #end
+#end
+
+}
+#end
+## function: 使第一个字符大写
+#macro(convert $string)
+    #set($name=$string.substring(0,1).toUpperCase() + ${string.substring(1)})
+#end
